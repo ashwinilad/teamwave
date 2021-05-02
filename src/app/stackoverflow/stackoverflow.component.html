@@ -1,0 +1,46 @@
+<div class="stackoverflow-section">
+    <p class="askQ">Ask a quesiton.</p>
+    <div class="search">
+        <input type="text" class="searchTerm" #titleInput placeholder="What are you looking for?">
+        <button (click)= "getAllQuestions(titleInput.value)" class="searchButton">
+          Search
+       </button>
+     </div>
+    <div *ngIf="questionData">
+      <div *ngFor = "let item of questionData.items">
+        <div class="searched-data-section">
+          <div class="so-card"><a class="so-profile-link" href="{{item.owner.link}}" target="_blank"></a>
+            <div class="so-header">
+              <div class="so-profile-picture-container"><a href="{{item.owner.link}}"><img src="{{item.owner.profile_image}}"/></a></div>
+              <h4 class="so-display-name">{{item.owner.display_name}}</h4>
+            </div>
+            <div class="so-content">
+              <p class="so-reputation">{{item.owner.reputation}}</p><small class="so-reputation-label">Stackoverflow Reputation</small>
+            </div>
+          </div>
+          <div class="so-question-data">
+            <div class="title">
+              <p><a href="{{item.link}}">{{item.title}}</a></p>
+            </div>
+            <div class="tags" *ngFor="let tags of item.tags">
+              <span>{{tags}}</span>
+            </div>
+            <div class="so-votes-ans">
+              <div class="votes">
+                  <p>Votes</p>
+                  <span>{{item.score}}</span>
+              </div>
+              <div class="votes">
+                  <p>Answers</p>
+                  <span>{{item.answer_count}}</span>
+              </div>
+              <div class="votes">
+                <p>View Count</p>
+                <span>{{item.view_count}}</span>
+            </div>
+          </div>
+          </div>
+        </div>
+        </div>
+    </div>
+</div>
